@@ -1,10 +1,10 @@
 # A repository for:
 
-### Gerber et al. Manuscript titled, "Monitoring wolverine (Gulo gulo) distribution across the western United States for regional and national assessment "
+### Gerber et al. manuscript titled, "Monitoring wolverine (Gulo gulo) distribution across the western United States for regional and national assessment "
 
 ## Author
 
-This repository and code were authored by Brian D. Gerber (USGS, CSU). Data inputs were curated by Jacob S. Ivan (Colorado Parks and Wildlife).
+This repository and code were created by Brian D. Gerber (USGS, CSU; brian.gerber@colostate.edu). Data inputs were curated by Jacob S. Ivan (Colorado Parks and Wildlife; jake.ivan@state.co.us).
 
 ---
 
@@ -58,11 +58,11 @@ Overall, this repository contains 8 subfolders:
 
 ---
 
-There are two fundamental  workflows in this repository. 
+There are three fundamental workflows. 
 
 ### Summary of workflows
 
-There are two wolverine surveys (2017 and 2022) and subsequently two fundamental data sets.
+There are two wolverine surveys (2017 and 2022) and subsequently two data sets.
 
 There are two spatial occupancy analyses, one for each survey.
 
@@ -73,24 +73,22 @@ There is only one non-spatial occupancy analysis, for the 2022 survey. The 2017 
 
 ### Wolverine 2017 Spatial Occupancy Workflow
 
-1) The file `data.summarizing.2017.r` reads in the appropriate input files and primarily creates an .RData file (`wolv2017.spatial.data`) which is used as input for all analyses of the 2017 survey data.
-2) The spatial occupancy model fitting using the 2017 data is done via file `fit.survey1.2017.spatial.occ.r`. The model object that contains the 2017 spatial occupancy model is saved in object `sp.occ2017.3`.
-4) The primary spatial occupancy model is also fit in file `fit.survey1.2017.spatial.occ.convergence.eval.r` to evaluate parameter convergence (via Gelman-Rubin diagnostic).
-5) Model results summarizing and some plotting is done in file `results.summarize.spatial.occ.2017.r`
+1) The file `data.summarizing.2017.r` reads in the appropriate input files and creates an .RData file (`wolv2017.spatial.data`) which is used as input for all analyses of the 2017 survey data.
+2) The primary spatial occupancy model fitting using the 2017 data is done via file `fit.survey1.2017.spatial.occ.r`. The model object that contains the 2017 spatial occupancy model is saved in object `sp.occ2017.3` and will be located in the folder, `outputs`.
+4) The spatial occupancy model is also fit in file `fit.survey1.2017.spatial.occ.convergence.eval.r` to evaluate parameter convergence (via Gelman-Rubin diagnostic) using multiple chains.
+5) Some model results are examined in file `results.summarize.spatial.occ.2017.r`
 
 ### Wolverine 2022 Spatial Occupancy Workflow
 
-1) The file `data.summarizing.2022.r` reads in the appropriate input files and primarily creates an .RData file (`wolv2022.spatial.data`) which is used as input for all analyses of the 2022 survey data.
-2) The spatial occupancy model fitting is done via file `fit.survey2.2022.spatial.occ.r`. The model object that contains the 2022 spatial occupancy model is save in object `sp.occ2022.gr.hab.bait`.
-4) The spatial occupancy model is also fit in file `fit.survey2.2022.spatial.occ.convergence.eval.r` to evaluate parameter convergence (via Gelman-Rubin diagnostic).
-5) Model results summarizing and some plotting is done in file `results.summarize.spatial.occ.2022.r`
+1) The file `data.summarizing.2022.r` reads in the appropriate input files and  creates an .RData file (`wolv2022.spatial.data`) which is used as input for all analyses of the 2022 survey data.
+2) The primary spatial occupancy model fitting is done via file `fit.survey2.2022.spatial.occ.r`. The model object that contains the 2022 spatial occupancy model is save in object `sp.occ2022.gr.hab.bait` and wil be located in the folder, `outputs`.
+4) The spatial occupancy model is also fit in file `fit.survey2.2022.spatial.occ.convergence.eval.r` to evaluate parameter convergence (via Gelman-Rubin diagnostic) using multiple chains.
+5) Some model results are examined in file `results.summarize.spatial.occ.2022.r`
 
 
 ### Wolverine 2017-2022 Spatial Occupancy Comparison Workflow
 
-1) The file `plot.2017.2022.data.comparison.r` aligns the 2017 and 2022 survey data to compare and plot the data.
-2) The file `results.spatial.occ.comparison.2017.2022.r` aligns the results from the two surveys and summarizes results.
-
+1) The file `results.spatial.occ.comparison.2017.2022.r` aligns the results from the two surveys and summarizes results.
 
 ### Wolverine 2022 Non-Spatial Occuapncy Modeling Workflow
 

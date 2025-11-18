@@ -354,9 +354,16 @@ display: none;
 
 <div id="a-repository-for" class="section level1">
 <h1>A repository for:</h1>
-<div id="occupancy-analyses-of-wafwa-wolverine-multi-state-monitoring-from-surveys-2017-and-2022." class="section level3">
-<h3>Occupancy analyses of WAFWA Wolverine multi-state monitoring from
-surveys 2017 and 2022.</h3>
+<div id="gerber-et-al.-manuscript-titled-monitoring-wolverine-gulo-gulo-distribution-across-the-western-united-states-for-regional-and-national-assessment" class="section level3">
+<h3>Gerber et al. manuscript titled, “Monitoring wolverine (Gulo gulo)
+distribution across the western United States for regional and national
+assessment”</h3>
+</div>
+<div id="author" class="section level2">
+<h2>Author</h2>
+<p>This repository and code were created by Brian D. Gerber (USGS, CSU;
+<a href="mailto:brian.gerber@colostate.edu" class="email">brian.gerber@colostate.edu</a>). Data inputs were curated
+by Jacob S. Ivan (Colorado Parks and Wildlife; <a href="mailto:jake.ivan@state.co.us" class="email">jake.ivan@state.co.us</a>).</p>
 <hr />
 </div>
 <div id="links-to-different-parts-of-the-readme-file" class="section level2">
@@ -368,45 +375,36 @@ repository?</a></li>
 <li><a href="#workflows-in-this-repository">Workflows in this
 repository</a>
 <ol style="list-style-type: decimal">
-<li><a href="#data-processing-workflow">Data processing
-workflow</a></li>
-<li><a href="#simulation-workflow">Simulation workflow</a></li>
-<li><a href="#rnp-fosa-modeling-workflow">RNP Fosa modeling
-workflow</a></li>
-<li><a href="#makira-fosa-modeling-workflow">Makira Fosa modeling
-workflow</a></li>
-<li><a href="#plotting-fosa-results-workflow">Plotting Fosa results
-workflow</a></li>
-</ol></li>
-<li><a href="#file-and-folder-descriptions">File and folder
-descriptions</a>
-<ol style="list-style-type: decimal">
-<li><a href="#chicago-coyote">Chicago coyote</a></li>
-<li><a href="#data-processing">Data Processing</a></li>
-<li><a href="#jags">JAGS</a></li>
-<li><a href="#makira-fosa2">Makira Fosa2</a></li>
-<li><a href="#rnp-fosa">RNP Fosa</a></li>
-<li><a href="#simulation-files">Simulation Files</a></li>
+<li><a href="#Summary-of-workflows">Summary of workflows</a></li>
+<li><a href="#Wolverine-2017-Spatial-Occupancy-Workflow">Wolverine 2017
+Spatial Occupancy Workflow</a></li>
+<li><a href="#Wolverine-2022-Spatial-Occupancy-Workflow">Wolverine 2022
+Spatial Occupancy Workflow</a></li>
+<li><a href="#Wolverine-2017-2022-Spatial-Occupancy-Comparison-Workflow">Wolverine
+2017-2022 Spatial Occupancy Comparison Workflow</a></li>
+<li><a href="#Wolverine-2022-Non-Spatial-Occuapncy-Modeling-Workflow">Wolverine
+2022 Non-Spatial Occuapncy Modeling Workflow</a></li>
+<li><a href="#Rmarkdown">RMarkdown</a></li>
 </ol></li>
 </ol>
 </div>
 <div id="whats-in-this-repository" class="section level2">
 <h2>What’s in this repository?</h2>
-<p>This repository stores the data and code used to fit several
-occupancy models to wolverine detection / non-detection data.</p>
-<p>The data here does not include the original camera trap images or the
-original processed outputs. Those data were previously processed by Paul
-Lucaks and not re-engineered here by Brian Gerber. The data here is only
-the detection / non-detection data and site covariate information
-relevant for spatial and non-spatial occupancy analyses.</p>
-<p>The spatial occupancy modeling is done for prediction purposes. The
-non-spatial occupancy modeling is done for inference purposes (examining
-effects of spatial variables).</p>
-<p>Ultimately, this document provides information of the files present
-in this repository and serves as a road map that describes the workflows
-for recreating the analyses since Brian Gerber (USGS, CSU) began as the
-statistical ecologist for the WAFWA forest monitoring sub-committee
-(April, 2025).</p>
+<p>This repository stores the data and code relevant to the manuscript
+‘Monitoring wolverine (Gulo gulo) distribution across the western United
+States for regional and national assessment’.</p>
+<p>The code fits several occupancy models to wolverine detection /
+non-detection data from multi-state surveys coordinated by teh Western
+Association of Fish and Wildlife Agencies (WAFWA) Forest Carnivore
+Subcommittee. Members of this committee are all authors of the
+manuscript.</p>
+<p>Note that the data here does not include the original camera trap
+images or the original processed outputs. The data is only the detection
+/ non-detection data and site covariate information relevant for spatial
+and non-spatial occupancy. <strong>Importantly, the analyses do not
+replicate the spatial occupancy results in the manuscript exactly
+because the spatial locations shared are rounded to the nearest 10
+km</strong>.</p>
 <p><a href="#a-repository-for">Back to table of contents ⤒</a></p>
 </div>
 <div id="the-working-directory" class="section level2">
@@ -416,102 +414,79 @@ statistical ecologist for the WAFWA forest monitoring sub-committee
 working directory as the folder that houses the entire repository. All
 files that are read in or scripts that are run are made relative to this
 central directory.</p>
+<p>To start, you can open the R project file
+<code>Wolverine-WAFWA-2025.Rproj</code>.</p>
 <p>Overall, this repository contains 8 subfolders:</p>
 <ol style="list-style-type: decimal">
 <li>The <strong>data</strong> folder includes detection/non-detection
 data and site covariate for occupancy analyses; these were curated by
-Jake Ivan (Colorado Parks and Wildlife) with much pain and much
-care.</li>
-<li>The <strong>literature</strong> folder includes the first WAFWA
-wolverine manuscript and the development of spatial occupancy model
-implemented here.</li>
-<li>The <strong>manuscript survey 2</strong> folder includes the draft
-manuscript 2 from first efforts (pre-Brian) and subsequent drafts.</li>
-<li>The <strong>other</strong> folder includes miscellaneous
-outputs.</li>
+Jake Ivan of Colorado Parks and Wildlife.</li>
 <li>The <strong>outputs</strong> folder includes R object files and
-RData files produced from the workflow; the testing subfolder is a
-dumping ground during the development phase.</li>
-<li>The <strong>plots</strong> folder includes plotted data or model
-results; the testing subfolder is a dumping ground during the
-development phase.</li>
+RData files produced from the workflow.</li>
+<li>The <strong>plots</strong> folder will contain plots outputted from
+the code scripts.</li>
 <li>The <strong>R</strong> folder includes R scripts for processing or
-summarizing data, fitting models, and processing results and
-plotting.</li>
-<li>The <strong>RMarkdown</strong> folder includes RMarkdown scripts
-created for sharing results with teh WAFWA subcomittee.</li>
+summarizing data, fitting models, and processing results.</li>
 </ol>
 <p><a href="#a-repository-for">Back to table of contents ⤒</a></p>
 </div>
 <div id="workflows-in-this-repository" class="section level2">
 <h2>Workflows in this repository</h2>
 <hr />
-<p>As there are multiple analyses, there are multiple workflows in this
-repository. We describe each of them here, and then leave the more
-specific file explanations to later in this README file.</p>
-<div id="data-processing-workflow" class="section level3">
-<h3>Data processing workflow</h3>
+<p>There are three fundamental workflows.</p>
+<div id="summary-of-workflows" class="section level3">
+<h3>Summary of workflows</h3>
 <p>There are two wolverine surveys (2017 and 2022) and subsequently two
-fundamental data sets.</p>
+data sets.</p>
 <p>There are two spatial occupancy analyses, one for each survey.</p>
 <p>There is only one non-spatial occupancy analysis, for the 2022
-survey. The 2017 analysis was not recreated here.</p>
-<p>There are multiple scripts that fit models for testing and comparison
-reasons; for example, comparison with past model fits.</p>
+survey. The 2017 analysis was done by Lukacs et al. 2020 and it not
+recreated here.</p>
 <p><a href="#a-repository-for">Back to table of contents ⤒</a></p>
 </div>
 <div id="wolverine-2017-spatial-occupancy-workflow" class="section level3">
 <h3>Wolverine 2017 Spatial Occupancy Workflow</h3>
 <ol style="list-style-type: decimal">
-<li>The file <code>summarizing.data.2017.r</code> brings in the data for
-checking and produces some maps; an .RData file is output
-(<code>wolv2017.spatial.data</code>) and used as input for all analyses
-of the 2017 survey data.</li>
-<li>Model fitting testing is done via file
-<code>fit.testing.spatial.occ.2017.r</code>; this can primarily be
-ignored.</li>
-<li>The primary spatial occupancy model fitting is done via file
-<code>fit.survey1.2017.spatial.occ.r</code>; results are compared with
-the model fitting done and presented in Lukacs et al. 2020. The model
-object that contains the 2017 spatial occupancy model is save in object
-<code>sp.occ2017.2</code>.</li>
-<li>The primary spatial occupancy model is also fit in file
+<li>The file <code>data.summarizing.2017.r</code> reads in the
+appropriate input files and creates an .RData file
+(<code>wolv2017.spatial.data</code>) which is used as input for all
+analyses of the 2017 survey data.</li>
+<li>The primary spatial occupancy model fitting using the 2017 data is
+done via file <code>fit.survey1.2017.spatial.occ.r</code>. The model
+object that contains the 2017 spatial occupancy model is saved in object
+<code>sp.occ2017.3</code> located in the folder,
+<code>outputs</code>.</li>
+<li>The spatial occupancy model is also fit in file
 <code>fit.survey1.2017.spatial.occ.convergence.eval.r</code> to evaluate
-parameter convergence.</li>
-<li>Model results summarizing and some plotting is done in file
+parameter convergence (via Gelman-Rubin diagnostic) using multiple
+chains.</li>
+<li>Some model results are examined in file
 <code>results.summarize.spatial.occ.2017.r</code></li>
-<li>Additional plotting from spatial occupancy model results is done in
-file <code>plotting.2017.sp.occupancy.r</code></li>
 </ol>
 </div>
 <div id="wolverine-2022-spatial-occupancy-workflow" class="section level3">
 <h3>Wolverine 2022 Spatial Occupancy Workflow</h3>
 <ol style="list-style-type: decimal">
-<li>The file <code>summarizing.data.2022.r</code> brings in the data for
-checking and produces some maps; an .RData file is output
-(<code>wolv2022.spatial.data</code>) and used as input for all analyses
-of the 2017 survey data.</li>
-<li>Model fitting testing is done via file
-<code>fit.testing.spatial.occ.fit.survey2.2022.r</code>; this can
-primarily be ignored.</li>
+<li>The file <code>data.summarizing.2022.r</code> reads in the
+appropriate input files and creates an .RData file
+(<code>wolv2022.spatial.data</code>) which is used as input for all
+analyses of the 2022 survey data.</li>
 <li>The primary spatial occupancy model fitting is done via file
 <code>fit.survey2.2022.spatial.occ.r</code>. The model object that
 contains the 2022 spatial occupancy model is save in object
-<code>sp.occ2022.gr.hab</code>.</li>
-<li>The primary spatial occupancy model is also fit in file
+<code>sp.occ2022.gr.hab.bait</code> located in the folder,
+<code>outputs</code>.</li>
+<li>The spatial occupancy model is also fit in file
 <code>fit.survey2.2022.spatial.occ.convergence.eval.r</code> to evaluate
-parameter convergence.</li>
-<li>Model results summarizing and some plotting is done in file
+parameter convergence (via Gelman-Rubin diagnostic) using multiple
+chains.</li>
+<li>Some model results are examined in file
 <code>results.summarize.spatial.occ.2022.r</code></li>
-<li>Additional plotting from spatial occupancy model results is done in
-file <code>plotting.2022.sp.occupancy.r</code></li>
 </ol>
 </div>
 <div id="wolverine-2017-2022-spatial-occupancy-comparison-workflow" class="section level3">
 <h3>Wolverine 2017-2022 Spatial Occupancy Comparison Workflow</h3>
 <ol style="list-style-type: decimal">
-<li>The file <code>plot.2017.2022.data.comparison.r</code> aligns the
-2017 and 2022 survey data to compare and plot the data.</li>
 <li>The file <code>results.spatial.occ.comparison.2017.2022.r</code>
 aligns the results from the two surveys and summarizes results.</li>
 </ol>
@@ -524,8 +499,9 @@ non-spatial occupancy modeling; this is done in file
 <code>data.mgmt.spatial.to.nonspatial.frame.r</code>; note that the 2017
 data are not fit with a non-spatial occupancy model here.</li>
 <li>Non-spatial occupancy models (for inference purposes) are fit using
-in the file <code>fit.non.spatial.occ.ubms.r</code>.</li>
+in the file <code>fit.survey2.2022.non.spatial.occ.ubms.r</code>.</li>
 </ol>
+<p><a href="#a-repository-for">Back to table of contents ⤒</a></p>
 </div>
 </div>
 </div>
