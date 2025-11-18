@@ -1,0 +1,3 @@
+The habData and visitData are used in a spatial occupancy model that relies on exact coordinates of sampled point locations and unsampled points to which 
+occupancy predictions are made. The exact locations can not be shared, thus the XY location (columns Albers_X and Albers_Y) have been rounded to 
+10 kilometers and the decimal degrees (columns Latitude and Longitude) have been rounded to the neares 0.1 decimal degrees, which is near 11 km. As such the fitted models will not recreate the exact results presented in the associated manuscript, "Monitoring wolverine (Gulo gulo) distribution across the western United States for regional and national assessment".
