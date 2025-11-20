@@ -3,7 +3,7 @@
 #       (first) data.
 #
 # Author: Brian D. Gerber
-# Last Modified: 8/18/2025
+# Last Modified: 11/19/2025
 #
 # NOTE: the fitted model here does not recreate the manuscript results exactly
 #       because the spatial locations are rounded to 10 km
@@ -17,13 +17,6 @@
 # Load data and visualize
   load("./outputs/wolv2017.spatial.data")
   
-#IF need be, you can also load csv objects to get the data  
- # habData2017 = read.csv("./data/habDataWolv2017_07-16-25.csv")
- # visitData2017 = read.csv("./data/visitDataWolv2017_07-16-25.csv")
-  #Note that these files don't have 'site.id.for.occ' column used below
-  #for occupancy analysis
-
-
 # Visualize data  
   head(visitData2017)
   head(habData2017)
@@ -59,22 +52,17 @@ names <- list(
   save(sp.occ2017.3,file="./outputs/sp.occ2017.3")
 
   
-
 ##########################################  
 ##########################################  
 
-  # Load fitted model objects
+  # Load fitted model objects, as needed
   load("./outputs/sp.occ2017.3")
   
-  
-  
-  # Look at the model- sp.occ2022.gr.hab.bait
-  
+ # Plot parameters
+    
   plot(sp.occ2017.3$beta,main="Detection (probit)")
   apply(sp.occ2017.3$beta,2,quantile,probs=c(0.025,0.5,0.975))
   apply(sp.occ2017.3$beta,2,hdi)
-  
-  length(which(sp.occ2017.3$beta[,2]<0))/nrow(sp.occ2017.3$beta)
   
   plot(sp.occ2017.3$gamma,main="Occupancy (probit)") 
   apply(sp.occ2017.3$gamma,2,quantile,probs=c(0.025,0.5,0.975))
@@ -84,4 +72,6 @@ names <- list(
   apply(sp.occ2017.3$tau,2,quantile,probs=c(0.025,0.5,0.975))
   apply(sp.occ2017.3$tau,2,hdi)
   
+ # probability of an effect of lure versus bait
+  length(which(sp.occ2017.3$beta[,2]<0))/nrow(sp.occ2017.3$beta)
   

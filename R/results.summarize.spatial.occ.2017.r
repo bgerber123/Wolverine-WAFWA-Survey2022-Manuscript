@@ -3,7 +3,7 @@
 #       2017 Wolverine Results
 #
 # Author: Brian Gerber
-# Last Modified: 7/24/2025
+# Last Modified: 11/19/2025
 #
 ##############################################
 
@@ -68,29 +68,29 @@
   states
   
 # Plot Wyoming 
-plot(density(states.mcmc[,1]),lwd=2,main="Wyoming")
-plot(density(states.mcmc[,1]/sites.per.states[1]),lwd=2,main="Wyoming")
+  plot(density(states.mcmc[,1]),lwd=2,main="Wyoming")
+  plot(density(states.mcmc[,1]/sites.per.states[1]),lwd=2,main="Wyoming")
 
 # Plot Idaho 
-plot(density(states.mcmc[,2]),lwd=2,main="Idaho")
-plot(density(states.mcmc[,2]/sites.per.states[2]),lwd=2,main="Idaho")
+  plot(density(states.mcmc[,2]),lwd=2,main="Idaho")
+  plot(density(states.mcmc[,2]/sites.per.states[2]),lwd=2,main="Idaho")
 
 # Plot Montana 
-plot(density(states.mcmc[,3]),lwd=2,main="Montana")
-plot(density(states.mcmc[,3]/sites.per.states[3]),lwd=2,main="Montana")
+  plot(density(states.mcmc[,3]),lwd=2,main="Montana")
+  plot(density(states.mcmc[,3]/sites.per.states[3]),lwd=2,main="Montana")
 
 # Plot Washington
-plot(density(states.mcmc[,4]),lwd=2,main="Washington")
-plot(density(states.mcmc[,4]/sites.per.states[4]),lwd=2,main="Washington")
+  plot(density(states.mcmc[,4]),lwd=2,main="Washington")
+  plot(density(states.mcmc[,4]/sites.per.states[4]),lwd=2,main="Washington")
 
 
 #Extract quantiles
-state.total.occ.quant=apply(states.mcmc,2,quantile,probs=c(0.025,0.5,0.975))
-t(state.total.occ.quant)
+  state.total.occ.quant=apply(states.mcmc,2,quantile,probs=c(0.025,0.5,0.975))
+  t(state.total.occ.quant)
 
 #Derive Occupancy by state
-state.occ.quant <- t(t(state.total.occ.quant) / sites.per.states)
-t(round(state.occ.quant,digits=2))
+  state.occ.quant <- t(t(state.total.occ.quant) / sites.per.states)
+  t(round(state.occ.quant,digits=2))
 
 #check- should be the same as the first column of state.occ.quant
   state.total.occ.quant[1,]/sites.per.states
@@ -134,5 +134,4 @@ arrange=ggarrange(state.occ.sites,
                   nrow=1, ncol=2)
 ggsave("./plots/plot.wolverine.2017.occupied.states.png", arrange,device="png",dpi=400,
        units="in",width=16,height=8)
-
 

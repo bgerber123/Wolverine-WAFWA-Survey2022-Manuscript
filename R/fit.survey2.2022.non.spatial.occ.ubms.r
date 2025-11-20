@@ -34,7 +34,6 @@
   dim(wolv2022.non.spatial$site.covs.2022)  
   
 
-
 # Major difference in where they are- Bait is only in ID and WY    
   table(wolv2022.non.spatial$site.covs.2022$SiteType2022, wolv2022.non.spatial$site.covs.2022$STATE) 
   
@@ -77,22 +76,8 @@
                                obsCovs = NULL
                                )
 
-# CSPH (snow adn primary habitat)
-# SNW (Snow water equivalent, mean and standard deviation)
-# Percent burned in last 20 years  
-# Snow depth (mean and standard deviation)  
 
-# propCopelandInman increases leads to increase in occupancy
-# meanHumanMod_2022 increases leads to decrease in occupancy
-# ClusterCount increase leads to increase in occupancy
-# meanNDVI_2022 increase leads to increase in occupancy
-# propBurned2016_2021 increase leads to decrease in occupancy
-# propBurned2001_2015
-# propBurned2001_2021 increase leads to increase in occupancy (PROBABLY NEEDS TO ELIMINATE averaged years 2016-2021)
-# meanMaySWE_2022 increases to some degree increases in occupancy (quadtratic?)  
-# SDMaySWE_2022 increases might lead to decrease in occupancy  
-  
-
+####################
 # Fit individual occupancy models    
   
 # Null Model  
@@ -134,9 +119,8 @@
   save(fit.m4,file="./outputs/fit.m4")
   
 
-  
-  
-# Load outputs to consider
+
+# Load outputs to consider, as needed
   load("./outputs/fit.m1")
   load("./outputs/fit.m2")
   load("./outputs/fit.m3")
@@ -165,26 +149,21 @@
   
   fit.m4
 
-# #Goodness of fit test
-#   gof.m4 <- gof(fit.m4, draws=1000, quiet=TRUE)
-#   gof.m4
-#   plot(gof.m4)
-#   
- # Goodness of fit - by zeros
+# Goodness of fit - by zeros
    sim_y <- posterior_predict(fit.m4, "y", draws=1000)
-#   
+   
  # Rows are simulations and columns are sites by observations 
    dim(sim_y)  
    prop1 <- apply(sim_y, 1, function(x) mean(x==1, na.rm=TRUE))
    actual_prop1 <- mean(getY(fit.m4) == 1, na.rm=TRUE)
-#   
+
    #Compare
    hist(prop1, col='gray')
    abline(v=actual_prop1, col='red', lwd=2)
 
    length(which(prop1>actual_prop1))/length(prop1)
       
-   
+#########################   
 #Probability of a positive  effect 
   
   sims=data.frame(fit.m4@stanfit@sim$samples)
@@ -200,7 +179,6 @@
 
 # Names of all objects
   names(data.frame((fit.m4@stanfit@sim$samples)))
-
 
 # Plot marginal effects
   one =  plot_marginal(fit.m4, "state",covariate="meanHumanMod_2021")

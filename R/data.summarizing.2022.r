@@ -63,7 +63,8 @@
   
   # Create a 'site.id' only for the spatial modeling. In passed iterations,
   # there were issues with using GRID_ID in the function spatial.occupancy. 
-  habData2022$site.id.for.occ = 1:nrow(habData2022)    
+  habData2022$site.id.for.occ = 1:nrow(habData2022)
+  
   #Now, I need to loop through that visitData to assign the same site.id    
   visitData2022$site.id.for.occ=NA
   GRID_ID.unique=unique(habData2022$GRID_ID)    

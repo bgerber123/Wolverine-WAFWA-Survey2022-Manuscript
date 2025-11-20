@@ -1,12 +1,11 @@
 ###########################################
-# Goal: Get 2017 and 2022 survey data (formatted for stocc)
+# Goal: Get 2017 and 2022 survey data (formatted for stocc package)
 #       and convert to to ubms/unmarked R package frame
-#       (second) data.
 #
 # Author: Brian Gerber
-# Last Modified: 7/23/2025
+# Last Modified: 11/19/2025
 
-# FYI, using some base R and clear coding for longevity/transferability purposes
+# FYI, using base R and clear non-efficient coding for longevity/transferability purposes
 
 ##############################################
 # Setup Environment
@@ -17,10 +16,12 @@
   load("./outputs/wolv2017.spatial.data")
   load("./outputs/wolv2022.spatial.data")
 
-#unmarked/ubms requires a site by occasion dataframe .
-#Need to change from long format to wide format
+  
 ##############################
-# 2017 data 
+# unmarked/ubms requires a site by occasion dataframe .
+# Need to change from long format to wide format
+
+  # 2017 data 
   colnames(visitData2017)
   
   GRID_ID.2017 = unique(visitData2017$GRID_ID)
@@ -40,14 +41,6 @@
 
   
   head(visit.2017.data.unmarked)
-  
-#Now grab site covariates  
-# First manuscript had covariates of:
-#    Habitat
-#    Human
-#    NDVI
-#    Cluster
-  
   
   site.covs.2017 = data.frame(matrix(NA,nrow=nrow(visit.2017.data.unmarked),ncol=9))
   colnames(site.covs.2017) = c("propCopeland",
@@ -103,14 +96,6 @@ dim(visit.2017.data.unmarked)
   colnames(visit.2022.data.unmarked)=occs.2022
   
 #Now grab site covariates
-# Covariates Identified in draft manuscript of 2nd wolverine survey
-  
-# NDVI
-# ATP (habitat continuity)
-# CSPH (snow adn primary habitat)
-# SNW (Snow water equivalent, mean and standard deviation)
-# Percent burned in last 20 years  
-# Snow depth (mean and standard deviation)  
 
 colnames(habData2022)
   
@@ -130,7 +115,7 @@ colnames(habData2022)
                               "SiteType2022"
                               )
   
-  
+# Re orgnize covariate into the data frame site.covs.2022  
   for(i in 1:nrow(visit.2022.data.unmarked)){
     index=which(rownames(visit.2022.data.unmarked)[i]==habData2022$GRID_ID)
     site.covs.2022$propBurned2016_2021[i] = habData2022$propBurned2016_2021[index]
@@ -158,11 +143,13 @@ head(site.covs.2022)
 
 table(site.covs.2022$SiteType2022)
   
-index=which(site.covs.2022$SiteType2022=="" |site.covs.2022$SiteType2022=="Bait_Lure" )
-site.covs.2022$SiteType2022[index]="Bait"
+# Need to relabel a few
+  index=which(site.covs.2022$SiteType2022=="" |site.covs.2022$SiteType2022=="Bait_Lure" )
+  site.covs.2022$SiteType2022[index]="Bait"
+
 #######################
   
-#Put outputs together for non-spatial modeling
+# Put outputs together for non-spatial modeling
   wolv2017.non.spatial=list(visit.2017.data.unmarked=visit.2017.data.unmarked,
                             site.covs.2017 = site.covs.2017
                             )

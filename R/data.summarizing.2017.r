@@ -2,21 +2,20 @@
 # Goal: Load the 2017 wolverine survey (first multi-state survey) data to summarize and plot
 #
 # Author: Brian D. Gerber
-# Last Modified 8/18/2025
+# Last Modified 11/19/2025
 #
 #######################
 # Setup Environment
-rm(list=ls())
+  rm(list=ls())
 
 #######################
 # Load data from csv (provided by Jake Ivan; 7/17/25).
-
-habData2017 = read.csv("./data/habDataWolv2017_07-16-25.csv")
-visitData2017 = read.csv("./data/visitDataWolv2017_07-16-25.csv")
+  habData2017 = read.csv("./data/habDataWolv2017_07-16-25.csv")
+  visitData2017 = read.csv("./data/visitDataWolv2017_07-16-25.csv")
 
 # Look at dataframes  
-head(visitData2017)
-head(habData2017)
+  head(visitData2017)
+  head(habData2017)
 
 #Note that habData2017:
 #  - GRID_ID is the ID of the sampling frame
@@ -43,41 +42,41 @@ head(habData2017)
 # The visit data is longer because the encounter history is in the long format and not the wide format.
 # Each row is a detection, so multiple rows (4) are of the same site/cell. Each detection is a sampling
 # occasion of 1 month.
-dim(visitData2017)
-dim(habData2017)
+
+  dim(visitData2017)
+  dim(habData2017)
 
 # This is the number of cells/sites in the sampling frame - these should agree
-nrow(habData2017)
-length(unique(habData2017$GRID_ID))
+  nrow(habData2017)
+  length(unique(habData2017$GRID_ID))
 
 
 #Check to see if GRID_ID matches in the two dataframes  
-all(visitData2017$GRID_ID%in%habData2017$GRID_ID)
-
+  all(visitData2017$GRID_ID%in%habData2017$GRID_ID)
 
 # Make a 'site.id' only for the spatial modeling. 
-habData2017$site.id.for.occ = 1:nrow(habData2017)    
+  habData2017$site.id.for.occ = 1:nrow(habData2017)    
 #Now, I need to loop through that visitData to assign the same site.id    
-visitData2017$site.id.for.occ=NA
-GRID_ID.unique=unique(habData2017$GRID_ID)    
-for(i in 1:length(GRID_ID.unique)){
-  index1=which(visitData2017$GRID_ID==GRID_ID.unique[i])
-  if(length(index1>0)){
-    visitData2017$site.id.for.occ[index1]=  habData2017$site.id.for.occ[i]
-  }
-}  
-# Check to make sure site ID's in visit data are the same as in habdata    
-all(visitData2017$site.id.for.occ%in%habData2017$site.id.for.occ)
-
+  visitData2017$site.id.for.occ=NA
+  GRID_ID.unique=unique(habData2017$GRID_ID)    
+  for(i in 1:length(GRID_ID.unique)){
+    index1=which(visitData2017$GRID_ID==GRID_ID.unique[i])
+    if(length(index1>0)){
+      visitData2017$site.id.for.occ[index1]=  habData2017$site.id.for.occ[i]
+    }
+  }  
+  # Check to make sure site ID's in visit data are the same as in habdata    
+  all(visitData2017$site.id.for.occ%in%habData2017$site.id.for.occ)
+  
 # The GRID_IDs's and site ID's match, which means we can use either
 # in the spatial occupancy model. 
 
-visitData2017$site.id.for.occ  
+  visitData2017$site.id.for.occ  
 
 # For modeling, the most important outputs are visitData2017 and habData2017
 # Save these as data objects  
-save(visitData2017,file="./outputs/wolv2017.visitData.only")
-save(habData2017,file="./outputs/wolv2017.habData.only")
+  save(visitData2017,file="./outputs/wolv2017.visitData.only")
+  save(habData2017,file="./outputs/wolv2017.habData.only")
 
 #####################################################  
 # save data object of the environment
