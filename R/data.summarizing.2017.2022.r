@@ -10,6 +10,8 @@
   rm(list=ls())
   library(sf)
   library(USA.state.boundaries)
+  library(ggplot2)
+  library(ggnewscale)
 
 # load data objects
   load(file="./outputs/wolv2017.visitData.only")

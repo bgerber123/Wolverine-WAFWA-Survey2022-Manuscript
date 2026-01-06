@@ -1,10 +1,16 @@
-# A repository for:
+---
+title: "WAFWA Wolverine Manuscript 2022 Survey"
+author: "Brian D. Gerber"
+date: "December 8, 2025"
+---
 
-### Gerber et al. manuscript titled, "Monitoring wolverine (Gulo gulo) distribution across the western United States for regional and national assessment "
+## A repository for:
+
+Gerber et al. manuscript titled, "Monitoring wolverine (*Gulo gulo*) distribution across the western United States for regional and national assessment", authored by members of the Western Association of the Fish and Wildlife Agencies (WAFWA) Forest Carnivore Subcommittee: Brian D. Gerber, Jacob S. Ivan, Paul M. Lukacs, Jeffrey C. Lewis, Nathan P. Kluge, Corey E. Mosby, Kalysta I. Adkins, Justin A. Guide, Kimberly Asmus Hersey, Robert M. Inman, Robert Long, Andrew C. Gygli, Eric Odell, and Kathleen C. Carroll.
 
 ## Author
 
-This repository and code were created by Brian D. Gerber (USGS, CSU; brian.gerber@colostate.edu). Data inputs were curated by Jacob S. Ivan (Colorado Parks and Wildlife; jake.ivan@state.co.us).
+This repository and code were created by Brian D. Gerber (USGS, CSU; brian.gerber@colostate.edu), while data inputs were curated by Jacob S. Ivan (Colorado Parks and Wildlife; jake.ivan@state.co.us).
 
 ---
 
@@ -12,7 +18,8 @@ This repository and code were created by Brian D. Gerber (USGS, CSU; brian.gerbe
 
 1. [What's in this repository?](#whats-in-this-repository)
 2. [The working directory](#the-working-directory)
-3. [Workflows in this repository](#workflows-in-this-repository)
+3. [Required R Packages](#required-r-packages)
+4. [Workflows in this repository](#workflows-in-this-repository)
 	1. [Summary of workflows](#Summary-of-workflows)
 	2. [Wolverine 2017 Spatial Occupancy Workflow](#Wolverine-2017-Spatial-Occupancy-Workflow)
 	3. [Wolverine 2022 Spatial Occupancy Workflow](#Wolverine-2022-Spatial-Occupancy-Workflow)
@@ -23,13 +30,13 @@ This repository and code were created by Brian D. Gerber (USGS, CSU; brian.gerbe
 
 ## What's in this repository?
 
-This repository stores the data and code relevant to the manuscript 'Monitoring wolverine (Gulo gulo) distribution across the western United States for regional and national assessment'.
+* This repository stores the data and code relevant to the above named manuscript.
 
-The code fits several occupancy models to wolverine detection / non-detection data from multi-state surveys coordinated by teh Western Association of Fish and Wildlife Agencies (WAFWA) Forest Carnivore Subcommittee. Members of this 
-committee are all authors of the manuscript.
+* The code fits several occupancy models to wolverine detection / non-detection data from multi-state surveys coordinated and implemented by members of the WAFWA Forest Carnivore Subcommittee. 
 
-Note that the data here does not include the original camera trap images or the original processed outputs. The data is only the detection / non-detection data and site covariate information relevant for spatial and non-spatial occupancy. 
-**Importantly, the analyses do not replicate the spatial occupancy results in the manuscript exactly because the spatial locations shared are rounded to the nearest 10 km**.
+* Note that the data here does not include the original camera trap images, only the outputs from aggregated databases. The data is specifically the detection / non-detection data and site covariate information relevant for spatial and non-spatial occupancy analyses. 
+
+* **Importantly, the analyses do not replicate the spatial occupancy results in the manuscript exactly because the spatial locations shared here are rounded to the nearest 10 km**. This is done to be in compliance with state agency regulations.
 
 
 [Back to table of contents ⤒](#a-repository-for)
@@ -40,25 +47,38 @@ Note that the data here does not include the original camera trap images or the 
 
 ---
 
-For all scripts in this repository, we assume you have set the working directory as the folder that houses the entire repository. All files that are read in or scripts that are run are made relative to this central directory.
+For all scripts in this repository, we assume the working directory is set to the folder that houses the entire repository. All files that are read in or scripts that are executed are made relative to this central directory.
 
-To start, you can open the R project file `Wolverine-WAFWA-2025.Rproj`.
+To start, you can open the R project file `Wolverine-WAFWA-Manuscript.Rproj`.
 
-Overall, this repository contains 8 subfolders:
+Overall, this repository contains 4 subfolders:
 
-1) The **data** folder includes detection/non-detection data and site covariate for occupancy analyses; these were curated by Jake Ivan of Colorado Parks and Wildlife. 
-5) The **outputs** folder includes R object files and RData files produced from the workflow.
-6) The **plots** folder will contain plots outputted from the code scripts.
-7) The **R** folder includes R scripts for processing or summarizing data, fitting models, and processing results.
+1) The **data** folder includes detection/non-detection data and site covariate for occupancy analyses. 
+2) The **outputs** folder includes R object files and .RData files produced from the workflow.
+3) The **plots** folder will contain plots outputted from the R scripts. Plots from the manuscript are not largely replicated because they are spatially explicit and the spatial locations here have been rounded and thus are not accurate.
+4) The **R** folder includes R scripts for processing or summarizing data, fitting models, and processing results.
 
 [Back to table of contents ⤒](#a-repository-for)
 
+## Required R Packages
+
+- coda (v.0.19-4.1)
+- ggpubr (v. 0.6.0)
+- ggnewscale (v.0.5.0)
+- ggplot2 (v.3.5.1)
+- HDInterval (v.0.2.4)
+- loo (v.2.8.0)
+- sf (v.1.0-19)
+- USA.state.boundaries (v.1.0.1)
+- stocc (v.1.3.1)
+- ubms (v.1.2.7)
+- unmarked (v.1.5.0)
+
+[Back to table of contents ⤒](#a-repository-for)
 
 ## Workflows in this repository
 
 ---
-
-There are three fundamental workflows. 
 
 ### Summary of workflows
 
@@ -67,6 +87,8 @@ There are two wolverine surveys (2017 and 2022) and subsequently two data sets.
 There are two spatial occupancy analyses, one for each survey.
 
 There is only one non-spatial occupancy analysis, for the 2022 survey. The 2017 analysis was done by Lukacs et al. 2020 and it not recreated here. 
+
+In total there are three fundamental workflows (see below). 
 
 
 [Back to table of contents ⤒](#a-repository-for)
@@ -81,7 +103,7 @@ There is only one non-spatial occupancy analysis, for the 2022 survey. The 2017 
 ### Wolverine 2022 Spatial Occupancy Workflow
 
 1) The file `data.summarizing.2022.r` reads in the appropriate input files and  creates an .RData file (`wolv2022.spatial.data`) which is used as input for all analyses of the 2022 survey data.
-2) The primary spatial occupancy model fitting is done via file `fit.survey2.2022.spatial.occ.r`. The model object that contains the 2022 spatial occupancy model is save in object `sp.occ2022.gr.hab.bait` and wil be located in the folder, `outputs`.
+2) The primary spatial occupancy model fitting is done via file `fit.survey2.2022.spatial.occ.r`. The model object that contains the 2022 spatial occupancy model is save in object `sp.occ2022.gr.hab.bait` and will be located in the folder, `outputs`.
 4) The spatial occupancy model is also fit in file `fit.survey2.2022.spatial.occ.convergence.eval.r` to evaluate parameter convergence (via Gelman-Rubin diagnostic) using multiple chains.
 5) Some model results are examined in file `results.summarize.spatial.occ.2022.r`
 
@@ -94,7 +116,7 @@ There is only one non-spatial occupancy analysis, for the 2022 survey. The 2017 
 
 1) The survey data for both 2017 and 2022 are reorganized for non-spatial occupancy modeling; this is done in file `data.mgmt.spatial.to.nonspatial.frame.r`; note that
 the 2017 data are not fit with a non-spatial occupancy model here.
-2) Non-spatial occupancy models  (for inference purposes) are fit using in the file `fit.survey2.2022.non.spatial.occ.ubms.r`.
+2) Non-spatial occupancy models (for inference purposes) are fit using in the file `fit.survey2.2022.non.spatial.occ.ubms.r`.
 
 
 [Back to table of contents ⤒](#a-repository-for)
