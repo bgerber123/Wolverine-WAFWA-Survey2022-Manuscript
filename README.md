@@ -1,16 +1,16 @@
 ---
 title: "WAFWA Wolverine Manuscript 2022 Survey"
 author: "Brian D. Gerber"
-date: "December 8, 2025"
+date: "June 8, 2026"
 ---
 
-## A repository for:
+## A repository for the manuscript:
 
-Gerber et al. manuscript titled, "Monitoring wolverine (*Gulo gulo*) distribution across the western United States for regional and national assessment", authored by members of the Western Association of the Fish and Wildlife Agencies (WAFWA) Forest Carnivore Subcommittee: Brian D. Gerber, Jacob S. Ivan, Paul M. Lukacs, Jeffrey C. Lewis, Nathan P. Kluge, Corey E. Mosby, Kalysta I. Adkins, Justin A. Guide, Kimberly Asmus Hersey, Robert M. Inman, Robert Long, Andrew C. Gygli, Eric Odell, and Kathleen C. Carroll.
+Gerber, BD, Ivan, JS, Lukacs, PM, Lewis, JC, Kluge, NP, Mosby, CE, Adkins, KI, Gude, JA, Hersey, KA, Inman, RM, Long, RA, O’Brien, H, Gygli, AC, Odell, O, Padilla, BJ, Waller, JS, and Carroll, KA. Monitoring wolverine (Gulo gulo) distribution across the western United States for regional and national assessment.
 
 ## Author
 
-This repository and code were created by Brian D. Gerber (USGS, CSU; brian.gerber@colostate.edu), while data inputs were curated by Jacob S. Ivan (Colorado Parks and Wildlife; jake.ivan@state.co.us).
+This repository and code were primarily created by Brian D. Gerber (USGS, CSU; brian.gerber@colostate.edu), while data inputs and code for processing of covariate information was curated by Jacob S. Ivan (Colorado Parks and Wildlife; jake.ivan@state.co.us).
 
 ---
 
@@ -54,15 +54,17 @@ To start, you can open the R project file `Wolverine-WAFWA-Manuscript.Rproj`.
 Overall, this repository contains 4 subfolders:
 
 1) The **data** folder includes detection/non-detection data and site covariate for occupancy analyses. 
-2) The **outputs** folder includes R object files and .RData files produced from the workflow.
-3) The **plots** folder will contain plots outputted from the R scripts. Plots from the manuscript are not largely replicated because they are spatially explicit and the spatial locations here have been rounded and thus are not accurate.
-4) The **R** folder includes R scripts for processing or summarizing data, fitting models, and processing results.
+2) The **data processing** folder includes inputs, an R script and python script that reconciles spatial covariate information that is ultimately used for the anlyses.
+3) The **outputs** folder includes R object files and .RData files produced from the workflow.
+4) The **plots** folder will contain plots outputted from the R scripts. Plots from the manuscript are not largely replicated because they are spatially explicit and the spatial locations here have been rounded and thus are not accurate.
+5) The **R** folder includes R scripts for processing or summarizing data, fitting models, and processing results.
 
 [Back to table of contents ⤒](#a-repository-for)
 
 ## Required R Packages
 
 - coda (v.0.19-4.1)
+- dplyr (v.1.2.1)
 - ggpubr (v. 0.6.0)
 - ggnewscale (v.0.5.0)
 - ggplot2 (v.3.5.1)
@@ -71,6 +73,7 @@ Overall, this repository contains 4 subfolders:
 - sf (v.1.0-19)
 - USA.state.boundaries (v.1.0.1)
 - stocc (v.1.3.1)
+- tidyverse (v.2.0.0)
 - ubms (v.1.2.7)
 - unmarked (v.1.5.0)
 
@@ -90,6 +93,7 @@ There is only one non-spatial occupancy analysis, for the 2022 survey. The 2017 
 
 In total there are three fundamental workflows (see below). 
 
+Note that the contents in the folder **data processing** precedes the analysis workflow.
 
 [Back to table of contents ⤒](#a-repository-for)
 

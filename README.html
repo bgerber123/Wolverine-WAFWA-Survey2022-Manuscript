@@ -11,7 +11,7 @@
 
 <meta name="author" content="Brian D. Gerber" />
 
-<meta name="date" content="2025-12-08" />
+<meta name="date" content="2026-06-08" />
 
 <title>WAFWA Wolverine Manuscript 2022 Survey</title>
 
@@ -352,27 +352,25 @@ display: none;
 
 <h1 class="title toc-ignore">WAFWA Wolverine Manuscript 2022 Survey</h1>
 <h4 class="author">Brian D. Gerber</h4>
-<h4 class="date">December 8, 2025</h4>
+<h4 class="date">June 8, 2026</h4>
 
 </div>
 
 
-<div id="a-repository-for" class="section level2">
-<h2>A repository for:</h2>
-<p>Gerber et al. manuscript titled, “Monitoring wolverine (<em>Gulo
-gulo</em>) distribution across the western United States for regional
-and national assessment”, authored by members of the Western Association
-of the Fish and Wildlife Agencies (WAFWA) Forest Carnivore Subcommittee:
-Brian D. Gerber, Jacob S. Ivan, Paul M. Lukacs, Jeffrey C. Lewis, Nathan
-P. Kluge, Corey E. Mosby, Kalysta I. Adkins, Justin A. Guide, Kimberly
-Asmus Hersey, Robert M. Inman, Robert Long, Andrew C. Gygli, Eric Odell,
-and Kathleen C. Carroll.</p>
+<div id="a-repository-for-the-manuscript" class="section level2">
+<h2>A repository for the manuscript:</h2>
+<p>Gerber, BD, Ivan, JS, Lukacs, PM, Lewis, JC, Kluge, NP, Mosby, CE,
+Adkins, KI, Gude, JA, Hersey, KA, Inman, RM, Long, RA, O’Brien, H,
+Gygli, AC, Odell, O, Padilla, BJ, Waller, JS, and Carroll, KA.
+Monitoring wolverine (Gulo gulo) distribution across the western United
+States for regional and national assessment.</p>
 </div>
 <div id="author" class="section level2">
 <h2>Author</h2>
-<p>This repository and code were created by Brian D. Gerber (USGS, CSU;
-<a href="mailto:brian.gerber@colostate.edu" class="email">brian.gerber@colostate.edu</a>), while data inputs were
-curated by Jacob S. Ivan (Colorado Parks and Wildlife; <a href="mailto:jake.ivan@state.co.us" class="email">jake.ivan@state.co.us</a>).</p>
+<p>This repository and code were primarily created by Brian D. Gerber
+(USGS, CSU; <a href="mailto:brian.gerber@colostate.edu" class="email">brian.gerber@colostate.edu</a>), while data inputs and
+code for processing of covariate information was curated by Jacob S.
+Ivan (Colorado Parks and Wildlife; <a href="mailto:jake.ivan@state.co.us" class="email">jake.ivan@state.co.us</a>).</p>
 <hr />
 </div>
 <div id="links-to-different-parts-of-the-readme-file" class="section level2">
@@ -431,6 +429,9 @@ central directory.</p>
 <ol style="list-style-type: decimal">
 <li>The <strong>data</strong> folder includes detection/non-detection
 data and site covariate for occupancy analyses.</li>
+<li>The <strong>data processing</strong> folder includes inputs, an R
+script and python script that reconciles spatial covariate information
+that is ultimately used for the anlyses.</li>
 <li>The <strong>outputs</strong> folder includes R object files and
 .RData files produced from the workflow.</li>
 <li>The <strong>plots</strong> folder will contain plots outputted from
@@ -446,6 +447,7 @@ summarizing data, fitting models, and processing results.</li>
 <h2>Required R Packages</h2>
 <ul>
 <li>coda (v.0.19-4.1)</li>
+<li>dplyr (v.1.2.1)</li>
 <li>ggpubr (v. 0.6.0)</li>
 <li>ggnewscale (v.0.5.0)</li>
 <li>ggplot2 (v.3.5.1)</li>
@@ -454,6 +456,7 @@ summarizing data, fitting models, and processing results.</li>
 <li>sf (v.1.0-19)</li>
 <li>USA.state.boundaries (v.1.0.1)</li>
 <li>stocc (v.1.3.1)</li>
+<li>tidyverse (v.2.0.0)</li>
 <li>ubms (v.1.2.7)</li>
 <li>unmarked (v.1.5.0)</li>
 </ul>
@@ -471,6 +474,8 @@ data sets.</p>
 survey. The 2017 analysis was done by Lukacs et al. 2020 and it not
 recreated here.</p>
 <p>In total there are three fundamental workflows (see below).</p>
+<p>Note that the contents in the folder <strong>data processing</strong>
+precedes the analysis workflow.</p>
 <p><a href="#a-repository-for">Back to table of contents ⤒</a></p>
 </div>
 <div id="wolverine-2017-spatial-occupancy-workflow" class="section level3">
